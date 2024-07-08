@@ -1,2 +1,2 @@
 # myJarvis-AI
-my own Jarvis AI using dolphine-llama3
+my own Jarvis AI using dolphin-llama3
