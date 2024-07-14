@@ -4,10 +4,11 @@
 """NOTE - you will need a microphone plugged into your computer"""
 
 """Libraries - for notes on how to install see video 4 in this series"""
-import pyttsx3, ollama
+import pyttsx3
 import speech_recognition as sr #don't forget to 'pip install' this library
 import time # this is part of python - you should not need to install this
 from ollama_test import call_ollama
+from groq_api_request import call_groq
 from datetime import datetime
 import pywhatkit
 import wikipedia
@@ -19,7 +20,7 @@ from random import choice
 
 """variables"""
 r = sr.Recognizer()
-wake_word ="Friday"  # setting up our 'wake' words
+wake_word ="tony"  # setting up our 'wake' words
 
 source = sr.Microphone() #setting up which mic we are using
 
@@ -45,7 +46,8 @@ def take_user_input():
                 print(type(command))
                 command = command.replace("hey", "")
                 command = command.replace("hi", "")
-                if wake_word in command and wake_word != command:
+                print(command)
+                if wake_word in command:
                     print("wake word in command")
 
                     check_command(command)
@@ -86,7 +88,7 @@ def check_command(input):
         Speak(joke)
     
     else:
-        answer = call_ollama(input)
+        answer = call_groq(input)
         Speak(answer)
 
 # response = ollama.chat(model='llama3', messages=[{'role': 'user','content': 'Why is the sky blue?',},])
